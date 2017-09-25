@@ -1,4 +1,3 @@
-// Same as https://github.com/NixOS/nixpkgs/archive/17.09-beta.tar.g
 {
   "owner": "NixOS",
   "repo": "nixpkgs",
