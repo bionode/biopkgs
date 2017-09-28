@@ -1,11 +1,9 @@
-# Add packages to buildInputs and simply run with `nix-shell` in current dir
-{ system ? builtins.currentSystem }:
+with import ./pkgs/top-level/all-packages.nix {};
 
-let
-  pkgs = import ./pkgs/top-level/all-packages.nix {};
-
-in pkgs.stdenv.mkDerivation {
-  name = "shell";
-  buildInputs = with pkgs; [
+stdenv.mkDerivation rec {
+  name = "YYYY.client.projectNumber.optionalCodename-${version}";
+  version = "1.0.0";
+  env = buildEnv { name = name; paths = buildInputs; };
+  buildInputs = [
   ];
 }
