@@ -16,7 +16,17 @@ let
 
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xlibs // self);
 
-  self = pkgs // {
+  customPkgs = {
+    shell = (import ../../shell.nix).env;
   };
+
+  allPkgs = pkgs // customPkgs;
+
+  utils = {
+    source = source;
+    dockerTar = callPackage ./dockerTar.nix { pkg=allPkgs."${pkg}"; };
+  };
+
+  self = allPkgs // utils;
 
 in self
