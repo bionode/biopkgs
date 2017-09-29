@@ -1,4 +1,4 @@
-#/bin/bash
+#!/usr/bin/env bash
 # Better Nix UI
 # Usage: source ./nix.sh
 
