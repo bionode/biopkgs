@@ -1,6 +1,9 @@
 {
-  "owner": "NixOS",
-  "repo": "nixpkgs",
-  "rev": "6a7066eb53685438564dc50362666d0e7f150110",
-  "sha256": "1psff8lpp5kmihsg7xv46a0d3rmhsb4kyb9w8r213gn8ggigwg57"
+  "version": "17.09-beta",
+  "origin": {
+    "owner": "NixOS",
+    "repo": "nixpkgs",
+    "rev": "6a7066eb53685438564dc50362666d0e7f150110",
+    "sha256": "1psff8lpp5kmihsg7xv46a0d3rmhsb4kyb9w8r213gn8ggigwg57"
+  }
 }

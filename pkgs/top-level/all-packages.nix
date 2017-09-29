@@ -1,9 +1,10 @@
 # Install packages with `nix-env -f default.nix -iA package-name`
-{ system ? builtins.currentSystem }:
+{ system ? builtins.currentSystem, pkg ? null }:
 
 let
   nixpkgs = import <nixpkgs> { inherit system; };
-  pinPkgs = import (nixpkgs.fetchFromGitHub (nixpkgs.lib.importJSON ../../nixsrc.json)) {};
+  source = (nixpkgs.lib.importJSON ../../nixsrc.json);
+  pinPkgs = import (nixpkgs.fetchFromGitHub source.origin) {};
 
   pkgs = pinPkgs // { 
     stdenv = pinPkgs.stdenv.overrideDerivation (attrs: attrs // {
@@ -15,7 +16,17 @@ let
 
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xlibs // self);
 
-  self = pkgs // {
+  customPkgs = {
+    shell = (import ../../shell.nix).env;
   };
+
+  allPkgs = pkgs // customPkgs;
+
+  utils = {
+    source = source;
+    dockerTar = callPackage ./dockerTar.nix { pkg=allPkgs."${pkg}"; };
+  };
+
+  self = allPkgs // utils;
 
 in self
