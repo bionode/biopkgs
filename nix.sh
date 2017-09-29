@@ -30,8 +30,9 @@ function nix() {
       docker-load-nix interactive
     ;;
     singularity)
-      NAME=$(docker ps -l --format "{{.Image}}" | sed 's|:|_|')
+      nix-build $(pwd) -A dockerTar --argstr pkg $2 && 
       docker-load-nix &&
+      NAME=$(docker ps -l --format "{{.Image}}" | sed 's|:|_|')
       docker export $(docker ps -lq) | gzip > $NAME.tar.gz
     ;;
     * ) echo "Options: shell, install, build, docker, singularity" ;;
