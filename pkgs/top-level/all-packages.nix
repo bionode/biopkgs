@@ -19,6 +19,7 @@ let
   customPkgs = {
     shell = (import ../../shell.nix).env;
     kmc = callPackage ../applications/science/biology/kmc {};
+    psmc = callPackage ../applications/science/biology/psmc {};
   };
 
   allPkgs = pkgs // customPkgs;
