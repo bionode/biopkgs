@@ -18,6 +18,7 @@ let
 
   customPkgs = {
     shell = (import ../../shell.nix).env;
+    kmc = callPackage ../applications/science/biology/kmc {};
   };
 
   allPkgs = pkgs // customPkgs;
