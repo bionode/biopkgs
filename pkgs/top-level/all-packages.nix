@@ -18,6 +18,7 @@ let
 
   customPkgs = {
     shell = (import ../../shell.nix).env;
+    fastqc = callPackage ../applications/science/biology/fastqc {};
     kmc = callPackage ../applications/science/biology/kmc {};
     psmc = callPackage ../applications/science/biology/psmc {};
     trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
