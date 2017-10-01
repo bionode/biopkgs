@@ -1,0 +1,23 @@
+--- a/build/ld.linux.gcc.sh	2017-09-19 08:31:35.379549300 +0100
++++ b/build/ld.linux.gcc.sh	2017-09-19 11:31:30.939704200 +0100
+@@ -26,7 +26,7 @@
+ # define linker params
+ LD_EXPORT_GLOBAL="-Wl,--export-dynamic"
+ LD_MULTIPLE_DEFS="-Wl,-zmuldefs"
+-LD_STATIC="-Wl,-Bstatic"
++LD_STATIC=""
+ LD_DYNAMIC="-Wl,-Bdynamic"
+ LD_ALL_SYMBOLS="-Wl,-whole-archive"
+ LD_REF_SYMBOLS="-Wl,-no-whole-archive"
+diff -Naur a/build/ld.linux.icc.sh b/build/ld.linux.icc.sh
+--- a/build/ld.linux.icc.sh	2017-09-19 08:31:35.393548500 +0100
++++ b/build/ld.linux.icc.sh	2017-09-19 11:40:09.650328300 +0100
+@@ -26,7 +26,7 @@
+ # define linker params
+ LD_EXPORT_GLOBAL="-Wa,--export-dynamic"
+ LD_MULTIPLE_DEFS="-Wa,-zmuldefs"
+-LD_STATIC="-Bstatic"
++LD_STATIC=""
+ LD_DYNAMIC="-Bdynamic"
+ LD_ALL_SYMBOLS="-Wa,-whole-archive"
+ LD_REF_SYMBOLS="-Wa,-no-whole-archive"

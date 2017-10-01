@@ -1,0 +1,11 @@
+--- a/setup/konfigure.perl	2017-09-19 08:33:19.757148100 +0100
++++ b/setup/konfigure.perl	2017-09-19 08:33:51.066450300 +0100
+@@ -739,7 +739,7 @@
+         my $EXECMDF = File::Spec->catdir(CONFIG_OUT(), 'ld.linux.exe_cmd.sh');
+         println "configure: creating '$EXECMDF'" unless ($AUTORUN);
+         open F, ">$EXECMDF" or die "cannot open $EXECMDF to write";
+-        print F "EXE_CMD=\"\$LD $STATIC_LIBSTDCPP -static-libgcc\"\n";
++        print F "EXE_CMD=\"\$LD $STATIC_LIBSTDCPP \"\n";
+         close F;
+     }
+ 
