@@ -20,6 +20,8 @@ let
     shell = (import ../../shell.nix).env;
     fastqc = callPackage ../applications/science/biology/fastqc {};
     kmc = callPackage ../applications/science/biology/kmc {};
+    ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {};
+    ngs = callPackage ../applications/science/biology/ngs {};
     psmc = callPackage ../applications/science/biology/psmc {};
     trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
   };

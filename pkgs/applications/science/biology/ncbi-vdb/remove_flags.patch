@@ -1,0 +1,68 @@
+diff -Naur a/build/Makefile.cc b/build/Makefile.cc
+--- a/build/Makefile.cc	2017-09-16 12:35:42.604865300 +0100
++++ b/build/Makefile.cc	2017-09-16 12:41:14.875302000 +0100
+@@ -46,12 +46,6 @@
+ # tool options
+ WARN =
+ 
+-ifeq (64,$(BITS))
+-	CARCH = -m64
+-else
+-	CARCH = -m32
+-endif
+-
+ ifeq (prof, $(BUILD))
+ 	PROF = -xpg
+ endif
+diff -Naur a/build/Makefile.clang b/build/Makefile.clang
+--- a/build/Makefile.clang	2017-09-16 12:35:42.608364600 +0100
++++ b/build/Makefile.clang	2017-09-16 12:40:51.885974000 +0100
+@@ -48,16 +48,6 @@
+ # tool options
+ WARN = -Wall -Wno-variadic-macros -Wno-long-long # -Wconversion
+ 
+-ifeq (64,$(BITS))
+-	CARCH = -m64
+-else
+-ifeq (32_64,$(BITS))
+-	CARCH = -arch i386 -arch x86_64  
+-else    
+-	CARCH = -m32
+-endif    
+-endif
+-
+ ifeq (prof, $(BUILD))
+ 	PROF = -pg
+ endif
+diff -Naur a/build/Makefile.gcc b/build/Makefile.gcc
+--- a/build/Makefile.gcc	2017-09-16 12:35:42.616864300 +0100
++++ b/build/Makefile.gcc	2017-09-16 12:41:50.238712200 +0100
+@@ -51,16 +51,6 @@
+     WARN += -Wno-variadic-macros
+ endif
+ 
+-ifeq (64,$(BITS))
+-	CARCH = -m64
+-else
+-ifeq (32_64,$(BITS))
+-	CARCH = -arch i386 -arch x86_64  
+-else    
+-	CARCH = -m32
+-endif    
+-endif
+-
+ ifeq (prof, $(BUILD))
+ 	PROF = -pg
+ endif
+diff -Naur a/libs/krypto/Makefile b/libs/krypto/Makefile
+--- a/libs/krypto/Makefile	2017-09-16 12:35:48.487889700 +0100
++++ b/libs/krypto/Makefile	2017-09-16 12:43:52.525270300 +0100
+@@ -135,7 +135,7 @@
+ # though other compilers could also be supported
+ ifeq ($(COMP),gcc)
+ CC_LISTING = -Wa,-ahlms=$(<D)/$(@F).list
+-_CC_AES_NI  = -funsafe-math-optimizations -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -maes -Wa,-march=generic64+aes $(CC_LISTING)
++_CC_AES_NI  = -funsafe-math-optimizations -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -maes $(CC_LISTING)
+ _CC_VECREG  = -funsafe-math-optimizations -mmmx -msse -msse2 -msse3 -mssse3 -msse4.1 -Wa,-march=generic64+sse4 $(CC_LISTING)
+ _CC_VEC     = $(CC_LISTING)
+ else
