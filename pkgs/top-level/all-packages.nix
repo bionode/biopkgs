@@ -22,6 +22,7 @@ let
     kmc = callPackage ../applications/science/biology/kmc {};
     ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {};
     ngs = callPackage ../applications/science/biology/ngs {};
+    seqlib = callPackage ../applications/science/biology/seqlib {};
     sra-tools = callPackage ../applications/science/biology/sra-tools {};
     psmc = callPackage ../applications/science/biology/psmc {};
     trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
