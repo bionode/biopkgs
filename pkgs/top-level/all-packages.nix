@@ -6,12 +6,12 @@ let
   source = (nixpkgs.lib.importJSON ../../nixsrc.json);
   pinPkgs = import (nixpkgs.fetchFromGitHub source.origin) {};
 
-  pkgs = pinPkgs // { 
+  pkgs = pinPkgs // {
     stdenv = pinPkgs.stdenv.overrideDerivation (attrs: attrs // {
       lib = attrs.lib // {
-        maintainers = import ../../lib/maintainers.nix {} ; 
+        maintainers = import ../../lib/maintainers.nix {};
       };
-    }); 
+    });
   };
 
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xlibs // self);
