@@ -1,0 +1,19 @@
+--- a/build/ld.linux.exe.sh	2017-09-19 08:31:35.372549400 +0100
++++ b/build/ld.linux.exe.sh	2017-09-19 11:05:57.045180100 +0100
+@@ -298,14 +298,8 @@
+ then
+     if grep -q XML2_LIBDIR ${BUILD_DIR}/Makefile.config.linux.$ARCH > /dev/null
+     then
+-        if grep -q 'OS_DISTRIBUTOR = Ubuntu' ${BUILD_DIR}/Makefile.config.linux.$ARCH > /dev/null
+-        then
+-            ##### Do not link libxml2 statically on Ubuntu: it does not compile
+-            XMLLIBDIR="-L$(grep XML2_LIBDIR ${BUILD_DIR}/Makefile.config.linux.$ARCH | perl -e'while(<>){if(/XML2_LIBDIR = (.+)/){print $1}}')"
+-        else
+-            ##### Link libxml2 statically on all linux-es except Ubuntu
+-            XMLLIBDIR="-Wl,-Bstatic -L$(grep XML2_LIBDIR ${BUILD_DIR}/Makefile.config.linux.$ARCH | perl -e'while(<>){if(/XML2_LIBDIR = (.+)/){print $1}}')"
+-        fi
++        ##### Do not link libxml2 statically on Ubuntu: it does not compile
++        XMLLIBDIR="-L$(grep XML2_LIBDIR ${BUILD_DIR}/Makefile.config.linux.$ARCH | perl -e'while(<>){if(/XML2_LIBDIR = (.+)/){print $1}}')"
+     fi
+     if [ $HAVE_XML -ne 0 ]
+     then

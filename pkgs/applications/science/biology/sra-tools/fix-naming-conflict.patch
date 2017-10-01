@@ -1,0 +1,11 @@
+--- a/tools/bam-loader/bam.c	2017-09-18 15:46:07.899176300 +0100
++++ b/tools/bam-loader/bam.c	2017-09-18 17:28:38.916371200 +0100
+@@ -3997,7 +3997,7 @@
+     return n;
+ }
+ 
+-static unsigned canonicalize(uint32_t cigar[], unsigned n)
++static unsigned sra_tools_canonicalize(uint32_t cigar[], unsigned n)
+ {
+     unsigned i;
+     
