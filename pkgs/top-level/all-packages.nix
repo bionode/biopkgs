@@ -18,6 +18,8 @@ let
 
   customPkgs = {
     shell = (import ../../shell.nix).env;
+    aspera = callPackage ../tools/networking/aspera {};
+    bbcp = callPackage ../tools/networking/bbcp {};
     fastqc = callPackage ../applications/science/biology/fastqc {};
     kmc = callPackage ../applications/science/biology/kmc {};
     ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {};
@@ -26,6 +28,9 @@ let
     sra-tools = callPackage ../applications/science/biology/sra-tools {};
     psmc = callPackage ../applications/science/biology/psmc {};
     trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
+    tsunami-udp = callPackage ../tools/networking/tsunami-udp {};
+    udpcast = callPackage ../tools/networking/udpcast {};
+    udr = callPackage ../tools/networking/udr {};
   };
 
   allPkgs = pkgs // customPkgs;
