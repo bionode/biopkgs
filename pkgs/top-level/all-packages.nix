@@ -30,6 +30,7 @@ let
     trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
     tsunami-udp = callPackage ../tools/networking/tsunami-udp {};
     udpcast = callPackage ../tools/networking/udpcast {};
+    udr = callPackage ../tools/networking/udr {};
   };
 
   allPkgs = pkgs // customPkgs;
