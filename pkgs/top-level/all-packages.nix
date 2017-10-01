@@ -18,6 +18,7 @@ let
 
   customPkgs = {
     shell = (import ../../shell.nix).env;
+    aspera = callPackage ../tools/networking/aspera {};
     fastqc = callPackage ../applications/science/biology/fastqc {};
     kmc = callPackage ../applications/science/biology/kmc {};
     ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {};
