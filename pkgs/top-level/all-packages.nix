@@ -28,6 +28,7 @@ let
     sra-tools = callPackage ../applications/science/biology/sra-tools {};
     psmc = callPackage ../applications/science/biology/psmc {};
     trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
+    tsunami-udp = callPackage ../tools/networking/tsunami-udp {};
   };
 
   allPkgs = pkgs // customPkgs;
