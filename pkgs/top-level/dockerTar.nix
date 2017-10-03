@@ -8,8 +8,8 @@
 
 let
   version = pkg.version or (
-    if pkg.name == "shell" 
-    then (import ../../shell.nix).version 
+    if pkg.name == "shell"
+    then (import ../../shell.nix).version
     else ""
   );
 in
