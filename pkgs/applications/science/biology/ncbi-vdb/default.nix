@@ -30,8 +30,8 @@ stdenv.mkDerivation rec {
 
   postFixup = ''
     # Sources needed for dependents like sra-tools
-    mkdir -p $out/src
-    mv * $out/src/
+    mkdir -p $out/src/ncbi-vdb
+    mv * $out/src/ncbi-vdb
   '';
 
 

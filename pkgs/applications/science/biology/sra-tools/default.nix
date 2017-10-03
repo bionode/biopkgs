@@ -25,8 +25,8 @@ stdenv.mkDerivation rec {
     --with-hdf5-prefix=${hdf5}
     --with-magic-prefix=${file}
     --with-ngs-sdk-prefix=${ngs}
-    --with-ncbi-vdb-build=${ncbi-vdb}/src/_build
-    --with-ncbi-vdb-source=${ncbi-vdb}/src
+    --with-ncbi-vdb-build=${ncbi-vdb}/src/ncbi-vdb/_build
+    --with-ncbi-vdb-source=${ncbi-vdb}/src/ncbi-vdb
   '';
 
   meta = with stdenv.lib; {
