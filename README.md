@@ -1,7 +1,7 @@
 # Pkgs
 > Nixpkgs personalized
 
-This can be used as a Git submodule to pin nixpkgs to a particular release and add custom packages. It also allows to easily create Docker and Singularity containers. 
+This can be used as a Git submodule to pin nixpkgs to a particular release and add custom packages. It also allows to easily create Docker and Singularity containers.
 
 ## Organization
 This repo tries to be minimal and thus does not include packages definitions from [NixOS/nixpkgs](https://github.com/NixOS/nixpkgs). Yet it follows the same folder structure so that customs packages added here can easily be copy pasted to a `NixOS/nixpkgs` fork to be included in the official nixpkgs release via pull requests. Custom packages added this way to the official Nix will be maintained there and removed from this repo.
@@ -31,7 +31,7 @@ Similar to doing: `nix-shell` in the repository root.
 Installs any package from official Nix or custom defined in this repo.  
 Similar to doing: `nix-env -f ./default.nix -iA package-name`
 
-#### Build 
+#### Build
 > `nix build package-name-or-shell`
 
 Builds any packages from official Nix or custom defined in this repo. Can also build the `nix shell` environment when called with `shell` instead of the package name. The result will be stored in `/nix/store` and linked locally at `result`.  
