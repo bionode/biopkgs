@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, jre }:
+{ stdenv, fetchurl, bash, jre }:
 
 stdenv.mkDerivation rec {
   name = "nextflow-${version}";
@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
     sha256 = "1h57rccm03sfb6qs0vgr7f8jkk676lc7iwppqg20ll00r9dnk8br";
   };
 
-  buildInputs = [ jre ];
+  propagatedBuildInputs = [ bash jre ];
 
   phases = [ "unpackPhase" "installPhase" ];
 
