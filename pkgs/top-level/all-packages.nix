@@ -32,7 +32,7 @@ let
     udpcast = callPackage ../tools/networking/udpcast {};
     udr = callPackage ../tools/networking/udr {};
     nodejs = hiPrio nodejs-6_x;
-    nodePackages_6_x = callPackage ../development/node-packages/default-v8.nix {
+    nodePackages_6_x = callPackage ../development/node-packages/default-v6.nix {
       nodejs = pkgs.nodejs-6_x;
     };
   };
