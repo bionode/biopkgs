@@ -23,6 +23,7 @@ let
     fastqc = callPackage ../applications/science/biology/fastqc {};
     kmc = callPackage ../applications/science/biology/kmc {};
     ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {};
+    nextflow = callPackage ../applications/science/misc/nextflow {};
     ngs = callPackage ../applications/science/biology/ngs {};
     seqlib = callPackage ../applications/science/biology/seqlib {};
     sra-tools = callPackage ../applications/science/biology/sra-tools {};
