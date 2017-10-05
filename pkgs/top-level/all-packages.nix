@@ -1,5 +1,5 @@
 # Install packages with `nix-env -f default.nix -iA package-name`
-{ system ? builtins.currentSystem, pkg ? null, hiPrio ? null, nodejs-6_x ? null }:
+{ system ? builtins.currentSystem, pkg ? null, shellDir ? ../../shell.nix, hiPrio ? null, nodejs-6_x ? null, ola ? null }:
 
 let
   nixpkgs = import <nixpkgs> { inherit system; };
@@ -17,7 +17,7 @@ let
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xlibs // self);
 
   customPkgs = {
-    shell = (import ../../shell.nix).env;
+    shell = (import shellDir).env;
     aspera = callPackage ../tools/networking/aspera {};
     bbcp = callPackage ../tools/networking/bbcp {};
     fastqc = callPackage ../applications/science/biology/fastqc {};
@@ -41,7 +41,7 @@ let
 
   utils = {
     source = source;
-    dockerTar = callPackage ./dockerTar.nix { pkg=allPkgs."${pkg}"; };
+    dockerTar = callPackage ./dockerTar.nix { pkg=allPkgs."${pkg}"; shellDir=(builtins.toPath shellDir); };
     nodePackages = customPkgs.nodePackages_6_x;
   };
 

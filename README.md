@@ -6,6 +6,11 @@ This can be used as a Git submodule to pin nixpkgs to a particular release and a
 ## Organization
 This repo tries to be minimal and thus does not include packages definitions from [NixOS/nixpkgs](https://github.com/NixOS/nixpkgs). Yet it follows the same folder structure so that customs packages added here can easily be copy pasted to a `NixOS/nixpkgs` fork to be included in the official nixpkgs release via pull requests. Custom packages added this way to the official Nix will be maintained there and removed from this repo.
 
+## New projects
+Copy `default.nix` and `shell.nix` into the root of your new project and add this repo as a git submodule.
+Edit `default.nix` so that the `pkgs` property matches the relative location of  `all-packages.nix`.
+Edit `shell.nix` so that the name and version are relevant to your project.
+
 ## Usage
 Edit `shell.nix` to adjust the name and version of your project to anything you want (optional).
 

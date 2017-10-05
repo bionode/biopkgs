@@ -1,4 +1,4 @@
-with import ./pkgs/top-level/all-packages.nix {};
+with import ./default.nix {};
 
 stdenv.mkDerivation rec {
   name = "YYYY.client.projectNumber.optionalCodename-${version}";

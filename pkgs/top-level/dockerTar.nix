@@ -4,12 +4,13 @@
 # docker export $(docker ps -lq) | gzip > htop.tar.gz
 # singularity exec htop.tar.gz htop
 
-{ pkg, source, dockerTools, busybox }:
+{ pkg, shellDir, source, dockerTools, busybox }:
 
 let
+  shell = import shellDir;
   version = pkg.version or (
-    if pkg.name == "shell"
-    then (import ../../shell.nix).version
+    if pkg.name == shell.name
+    then shell.version
     else ""
   );
 in
