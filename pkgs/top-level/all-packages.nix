@@ -26,6 +26,7 @@ let
     nextflow = callPackage ../applications/science/misc/nextflow {};
     ngs = callPackage ../applications/science/biology/ngs {};
     seqlib = callPackage ../applications/science/biology/seqlib {};
+    seqtk = callPackage ../applications/science/biology/seqtk {};
     sra-tools = callPackage ../applications/science/biology/sra-tools {};
     psmc = callPackage ../applications/science/biology/psmc {};
     trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
