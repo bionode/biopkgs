@@ -4,7 +4,7 @@
 # docker export $(docker ps -lq) | gzip > htop.tar.gz
 # singularity exec htop.tar.gz htop
 
-{ pkg, shellDir, source, dockerTools, busybox }:
+{ pkg, coreutils, which, gnugrep, gzip, gnused, curl, wget, gawk, shellDir, source, dockerTools, busybox }:
 
 let
   shell = import shellDir;
@@ -17,5 +17,5 @@ in
   dockerTools.buildImage rec {
     name = builtins.replaceStrings ["-${version}"] [""] "${pkg.name}";
     tag = "${version}_nix${source.version}";
-    contents = [ pkg busybox ];
+    contents = [ pkg coreutils which gnugrep gzip gnused curl wget gawk ];
   }
