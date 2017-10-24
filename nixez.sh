@@ -28,6 +28,11 @@ function nixez() {
     remove) nix-env -e "$2" ;;
     list) nix-env -q;;
     build) nix-build "$(pwd)" -A "$2" ;;
+    nodejs)
+      cd pkgs/development/node-packages
+      node2nix -6 -i node-packages-v6.json -o node-packages-v6.nix -c composition-v6.nix
+      cd ../../..
+    ;;
     docker)
       nix-build "$(pwd)" -A dockerTar --argstr pkg "$2" &&
       docker-load-nix interactive

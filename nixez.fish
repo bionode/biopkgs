@@ -45,6 +45,10 @@ function nixez
     nix-env -q
   case build
     nix-build (pwd) -A $argv[2]
+  case nodejs
+    cd pkgs/development/node-packages
+    node2nix -6 -i node-packages-v6.json -o node-packages-v6.nix -c composition-v6.nix
+    cd ../../..
   case docker
     nix-build (pwd) -A dockerTar --argstr pkg $argv[2]
     and docker-load-nix interactive
