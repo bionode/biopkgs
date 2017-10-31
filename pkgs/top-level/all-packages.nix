@@ -61,7 +61,7 @@ let
 
   utils = {
     source = source;
-    customPkgs = customPkgs;
+    containerReadyPkgs = containerReadyPkgs;
     dockerTar = callPackage ./dockerTar.nix { inherit timestamp; pkg=allPkgs."${pkg}"; shellDir=(builtins.toPath shellDir); };
     nodePackages = customPkgs.nodePackages_6_x;
   };
