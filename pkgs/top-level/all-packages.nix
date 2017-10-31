@@ -19,15 +19,12 @@ let
   customPkgs = {
     # aspera = callPackage ../tools/networking/aspera {};
     # bbcp = callPackage ../tools/networking/bbcp {};
-    # fastqc = callPackage ../applications/science/biology/fastqc {};
-    # kmc = callPackage ../applications/science/biology/kmc {};
     # ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {};
     # nextflow = callPackage ../applications/science/misc/nextflow {};
     # ngs = callPackage ../applications/science/biology/ngs {};
     # seqlib = callPackage ../applications/science/biology/seqlib {};
     htslib = callPackage ../development/libraries/science/biology/htslib {};
     # sra-tools = callPackage ../applications/science/biology/sra-tools {};
-    # trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
     # tsunami-udp = callPackage ../tools/networking/tsunami-udp {};
     # udpcast = callPackage ../tools/networking/udpcast {};
     # udr = callPackage ../tools/networking/udr {};
@@ -38,9 +35,22 @@ let
   };
 
   containerReadyPkgs = {
+    bcftools = callPackage ../applications/science/biology/bcftools {};
+    bedtools = callPackage ../applications/science/biology/bedtools {};
+    bowtie2 = callPackage ../applications/science/biology/bowtie2 {};
+    bwa = callPackage ../applications/science/biology/bwa {};
+    fastqc = callPackage ../applications/science/biology/fastqc {};
+    freebayes = callPackage ../applications/science/biology/freebayes {};
+    kmc = callPackage ../applications/science/biology/kmc {};
+    mrbayes = callPackage ../applications/science/biology/mrbayes {};
+    paml- = callPackage ../applications/science/biology/paml {};
+    picard-tools = callPackage ../applications/science/biology/picard-tools {};
+    plink = callPackage ../applications/science/biology/plink {};
+    plink-ng = callPackage ../applications/science/biology/plink-ng {};
+    psmc = callPackage ../applications/science/biology/psmc {};
     samtools = callPackage ../applications/science/biology/samtools {};
     seqtk = callPackage ../applications/science/biology/seqtk {};
-    psmc = callPackage ../applications/science/biology/psmc {};
+    trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
   };
 
   customEnvs = {
