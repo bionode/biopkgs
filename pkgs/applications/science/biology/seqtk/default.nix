@@ -1,8 +1,9 @@
 { stdenv, fetchFromGitHub, zlib }:
 
 stdenv.mkDerivation rec {
-  name = "seqtk-${version}";
+  baseName = "seqtk";
   version = "32e7903"; # Git commit from February 11, 2017
+  name = "${baseName}-${version}";
 
   src = fetchFromGitHub {
     owner = "lh3";
