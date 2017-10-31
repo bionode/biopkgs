@@ -1,9 +1,9 @@
 { stdenv, fetchurl, zlib, htslib, perl, ncurses ? null }:
 
 stdenv.mkDerivation rec {
-  baseName = "samtools";
+  name = "${pname}-${version}";
+  pname = "samtools";
   version = "1.6";
-  name = "${baseName}-${version}";
 
   src = fetchurl {
     url = "https://github.com/samtools/samtools/releases/download/${version}/${name}.tar.bz2";
@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
     patchShebangs test/
   '';
 
-  enableParallelBuilding = true;
+  enableParallelBuilding = false;
 
   doCheck = false;
 

@@ -1,8 +1,9 @@
 { stdenv, fetchurl, zlib, perl, libxml2, file, hdf5, ngs, ncbi-vdb }:
 
 stdenv.mkDerivation rec {
-  name = "sra-tools-${version}";
+  pname = "sra-tools";
   version = "2.8.2-3";
+  name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://github.com/ncbi/sra-tools/archive/${version}.tar.gz";

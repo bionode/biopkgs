@@ -1,8 +1,9 @@
 { stdenv, fetchFromGitHub }:
 
 stdenv.mkDerivation rec {
-  name = "kmc-${version}";
+  pname = "kmc";
   version = "f25a1af"; # Git commit from August 8, 2017
+  name = "${pname}-${version}";
 
   src = fetchFromGitHub {
     owner = "refresh-bio";

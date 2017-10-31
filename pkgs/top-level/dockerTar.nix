@@ -7,9 +7,9 @@ let
     then shell.version
     else ""
   );
-  baseName = pkg.baseName or (
+  pname = pkg.pname or (
     if pkg.name == shell.name
-    then shell.baseName
+    then shell.pname
     else ""
   );
 in
@@ -19,6 +19,6 @@ in
     contents = [ pkg busybox ];
     created = timestamp;
     config = {
-      Cmd = [ "${pkg}/bin/${baseName}" ];
+      Cmd = [ "${pkg}/bin/${pname}" ];
     };
   }

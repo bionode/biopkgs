@@ -1,9 +1,9 @@
 { stdenv, fetchFromGitHub, zlib }:
 
 stdenv.mkDerivation rec {
-  baseName = "psmc";
+  pname = "psmc";
   version = "e5f7df5"; # Git commit from January 21, 2016
-  name = "${baseName}-${version}";
+  name = "${pname}-${version}";
 
   src = fetchFromGitHub {
     owner = "lh3";

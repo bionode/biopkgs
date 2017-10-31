@@ -1,8 +1,9 @@
 { stdenv, fetchgit, zlib, lzma, bzip2 }:
 
 stdenv.mkDerivation rec {
-  name = "seqlib-${version}";
+  pname = "seqlib";
   version = "8c22fbc"; # Git commit from August 6, 2017
+  name = "${pname}-${version}";
 
   src = fetchgit {
     url = git://github.com/walaj/SeqLib.git;

@@ -1,8 +1,9 @@
 { stdenv, fetchurl, bash, jre }:
 
 stdenv.mkDerivation rec {
-  name = "nextflow-${version}";
+  pname = "nextflow";
   version = "0.25.7";
+  name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://www.nextflow.io/releases/v${version}/nextflow";
