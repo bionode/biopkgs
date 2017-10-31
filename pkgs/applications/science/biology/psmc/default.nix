@@ -2,6 +2,7 @@
 
 stdenv.mkDerivation rec {
   name = "psmc-${version}";
+  baseName = "psmc";
   version = "e5f7df5"; # Git commit from January 21, 2016
 
   src = fetchFromGitHub {

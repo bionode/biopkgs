@@ -3,7 +3,7 @@
 # Usage: source ./nixez.sh
 
 function docker-load-nix() {
-  if grep -q Microsoft /proc/version; then
+  if grep -q -s Microsoft /proc/version; then
     DIR=$(pwd | sed 's|/mnt/\(.\)|\1:|' | sed 's|/|\\|g')
   else
     DIR=$(pwd)
@@ -17,7 +17,7 @@ function docker-load-nix() {
     ARGS=""
   fi
 
-  docker run $ARGS -v "$DIR:/data" "$IMAGE" /bin/sh
+  # docker run $ARGS -v "$DIR:/data" "$IMAGE"
 }
 
 function nixez() {
@@ -34,8 +34,25 @@ function nixez() {
       cd ../../..
     ;;
     docker)
+      if [ "$(uname)" == "Darwin" ]; then
+        sudo $(cat ~/.nixpkgs/linuxkit-builder/env) \
+        NIX_PATH="nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs" \
+        nix-build "$(pwd)" -A dockerTar --argstr pkg "$2" \
+          --argstr timestamp $(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+          --argstr system "x86_64-linux"
+      else
+        nix-build "$(pwd)" -A dockerTar --argstr pkg "$2" \
+          --argstr timestamp $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+      fi
+      if [ -t 0 ]; then
+        docker-load-nix interactive
+      else
+        docker-load-nix
+      fi
+    ;;
+    docker-push)
       nix-build "$(pwd)" -A dockerTar --argstr pkg "$2" &&
-      docker-load-nix interactive
+      docker-load-nix
     ;;
     singularity)
       nix-build "$(pwd)" -A dockerTar --argstr pkg "$2" &&

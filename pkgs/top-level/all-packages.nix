@@ -1,10 +1,10 @@
 # Install packages with `nix-env -f default.nix -iA package-name`
-{ system ? builtins.currentSystem, pkg ? null, shellDir ? ../../shell.nix, hiPrio ? null, nodejs-6_x ? null, ola ? null }:
+{ system ? builtins.currentSystem, pkg ? null, shellDir ? ../../shell.nix, hiPrio ? null, nodejs-6_x ? null, timestamp ? "1970-01-01T00:00:01Z" }:
 
 let
   nixpkgs = import <nixpkgs> { inherit system; };
   source = (nixpkgs.lib.importJSON ../../nixsrc.json);
-  pinPkgs = import (nixpkgs.fetchFromGitHub source.origin) {};
+  pinPkgs = import (nixpkgs.fetchFromGitHub source.origin) { inherit system; };
 
   pkgs = pinPkgs // {
     stdenv = pinPkgs.stdenv.overrideDerivation (attrs: attrs // {
@@ -37,13 +37,16 @@ let
     nodePackages_6_x = callPackage ../development/node-packages/default-v6.nix {
       nodejs = pkgs.nodejs-6_x;
     };
+  customEnvs = {
+    shell = (import shellDir).env;
   };
 
-  allPkgs = pkgs // customPkgs;
+  allPkgs = pkgs // customPkgs // customEnvs;
 
   utils = {
     source = source;
-    dockerTar = callPackage ./dockerTar.nix { pkg=allPkgs."${pkg}"; shellDir=(builtins.toPath shellDir); };
+    customPkgs = customPkgs;
+    dockerTar = callPackage ./dockerTar.nix { inherit timestamp; pkg=allPkgs."${pkg}"; shellDir=(builtins.toPath shellDir); };
     nodePackages = customPkgs.nodePackages_6_x;
   };
 
