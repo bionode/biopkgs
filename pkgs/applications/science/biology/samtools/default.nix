@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  doCheck = true;
+  doCheck = false;
 
   meta = with stdenv.lib; {
     description = "Tools for manipulating SAM/BAM/CRAM format";
