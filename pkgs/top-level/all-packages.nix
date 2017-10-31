@@ -26,6 +26,7 @@ let
     # ngs = callPackage ../applications/science/biology/ngs {};
     # seqlib = callPackage ../applications/science/biology/seqlib {};
     htslib = callPackage ../development/libraries/science/biology/htslib {};
+    samtools = callPackage ../applications/science/biology/samtools {};
     seqtk = callPackage ../applications/science/biology/seqtk {};
     # sra-tools = callPackage ../applications/science/biology/sra-tools {};
     psmc = callPackage ../applications/science/biology/psmc {};

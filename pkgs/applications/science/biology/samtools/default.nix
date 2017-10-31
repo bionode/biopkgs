@@ -1,9 +1,9 @@
 { stdenv, fetchurl, zlib, htslib, perl, ncurses ? null }:
 
 stdenv.mkDerivation rec {
-  name = "${pname}-${version}";
-  pname = "samtools";
+  baseName = "samtools";
   version = "1.6";
+  name = "${baseName}-${version}";
 
   src = fetchurl {
     url = "https://github.com/samtools/samtools/releases/download/${version}/${name}.tar.bz2";
