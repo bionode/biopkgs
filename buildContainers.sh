@@ -3,7 +3,7 @@ source ./nixez.sh
 nixez install hello # To test and also get pinned Pkgs repo
 repo=bionode
 nixVersion=$(jq -r .version ./nixsrc.json)
-nix-env -f . -qaPA 'customPkgs' | awk '{print $2}' | while read pkg; do
+nix-env -f . -qaPA 'containerReadyPkgs' | awk '{print $2}' | while read pkg; do
   echo "Checking if $pkg needs to be pushed to Docker Hubs"
   pkgName=${pkg%%-*}
   pkgVersion=${pkg##*-}
