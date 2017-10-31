@@ -85,6 +85,9 @@ function nixez() {
         ;;
       esac
     ;;
+    repair)
+      nix-store --verify --check-contents
+    ;;
     * ) echo "Options: shell, search, install, remove, list, build, docker, singularity" ;;
   esac
 }

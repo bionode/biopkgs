@@ -90,6 +90,8 @@ function nixez
     if read_confirm
       curl https://nixos.org/nix/install | sh
     end
+  case repair
+    nix-store --verify --check-contents
   case '*'
     echo "Options: shell, search, install, remove, list, build, docker, singularity, setup, unsafe-setup"
   end
