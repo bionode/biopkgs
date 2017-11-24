@@ -23,7 +23,6 @@ let
     # nextflow = callPackage ../applications/science/misc/nextflow {};
     # ngs = callPackage ../applications/science/biology/ngs {};
     # seqlib = callPackage ../applications/science/biology/seqlib {};
-    htslib = callPackage ../development/libraries/science/biology/htslib {};
     # sra-tools = callPackage ../applications/science/biology/sra-tools {};
     # tsunami-udp = callPackage ../tools/networking/tsunami-udp {};
     # udpcast = callPackage ../tools/networking/udpcast {};
@@ -48,6 +47,7 @@ let
     plink = callPackage ../applications/science/biology/plink {};
     plink-ng = callPackage ../applications/science/biology/plink-ng {};
     psmc = callPackage ../applications/science/biology/psmc {};
+    htslib = callPackage ../development/libraries/science/biology/htslib {};
     samtools = callPackage ../applications/science/biology/samtools {};
     seqtk = callPackage ../applications/science/biology/seqtk {};
     trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
