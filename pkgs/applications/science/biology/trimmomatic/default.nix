@@ -1,7 +1,7 @@
 { stdenv, fetchurl, unzip, jre, makeWrapper }:
 
 stdenv.mkDerivation rec {
-  pname = "trimmomatic-${version}";
+  pname = "trimmomatic";
   version = "0.36";
   name = "${pname}-${version}";
 
