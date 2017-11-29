@@ -1,8 +1,9 @@
-{ stdenv, fetchFromGitHub, zlib }:
+{ stdenv, fetchFromGitHub, zlib, perl }:
 
 stdenv.mkDerivation rec {
   pname = "psmc";
-  version = "e5f7df5"; # Git commit from January 21, 2016
+  upstreamVersion = "e5f7df5"; # Git commit from January 21, 2016
+  version = "${upstreamVersion}perl";
   name = "${pname}-${version}";
 
   src = fetchFromGitHub {
@@ -12,7 +13,7 @@ stdenv.mkDerivation rec {
     sha256 = "1fh8vhrjabyc4vsgy7fqy24r83557vzgj3a3w4353nljdgz1q4il";
   };
 
-  buildInputs = [ zlib ];
+  buildInputs = [ zlib perl ];
   buildPhase = ''
     make
     cd utils; make; cd ..
@@ -20,6 +21,22 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin
     cp psmc $out/bin/
+    cp utils/avg.pl $out/bin/
+    cp utils/calD $out/bin/
+    cp utils/cntcpg $out/bin/
+    cp utils/ctime_plot.pl $out/bin/
+    cp utils/dec2ctime.pl $out/bin/
+    cp utils/dec2img.js $out/bin/
+    cp utils/decode2bed.pl $out/bin/
+    cp utils/fq2psmcfa $out/bin/
+    cp utils/history2ms.pl $out/bin/
+    cp utils/ms2psmcfa.pl $out/bin/
+    cp utils/mutDiff $out/bin/
+    cp utils/pcnt_bezier.lua $out/bin/
+    cp utils/psmc2history.pl $out/bin/
+    cp utils/psmc_plot.pl $out/bin/
+    cp utils/psmc_trunc.pl $out/bin/
+    cp utils/splitfa $out/bin/
   '';
 
   meta = with stdenv.lib; {
