@@ -3,16 +3,14 @@
 stdenv.mkDerivation rec {
   name = "${pname}-${version}";
   pname = "samtools";
-  version = "1.6";
+  version = "1.6-perl";
 
   src = fetchurl {
     url = "https://github.com/samtools/samtools/releases/download/${version}/${name}.tar.bz2";
     sha256 = "17p4vdj2j2qr3b2c0v4100h6cg4jj3zrb4dmdnd9d9aqs74d4p7f";
   };
 
-  nativeBuildInputs = [ perl ];
-
-  buildInputs = [ zlib ncurses htslib ];
+  buildInputs = [ zlib ncurses htslib perl];
 
   configureFlags = [ "--with-htslib=${htslib}" ]
     ++ stdenv.lib.optional (ncurses == null) "--without-curses";
