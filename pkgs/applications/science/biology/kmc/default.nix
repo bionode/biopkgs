@@ -12,12 +12,11 @@ stdenv.mkDerivation rec {
     sha256 = "0wzqhw4dkl9vpwnrc59ya1j0l8z9ccipmr2mjmmymbzyvclg0033";
   };
 
-  buildInputs = [ ];
-
   installPhase = ''
     mkdir -p $out/bin
     cp bin/kmc $out/bin/
     cp bin/kmc_dump $out/bin/
+    cp bin/kmc_tools $out/bin/
   '';
 
   patches = [
