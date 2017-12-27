@@ -47,6 +47,11 @@ let
     plink = callPackage ../applications/science/biology/plink {};
     plink-ng = callPackage ../applications/science/biology/plink-ng {};
     psmc = callPackage ../applications/science/biology/psmc {};
+    seqbility = callPackage ../applications/science/biology/seqbility {};
+    msmc = callPackage ../applications/science/biology/msmc {};
+    msmc-bin = callPackage ../applications/science/biology/msmc-bin {};
+    msmc2 = callPackage ../applications/science/biology/msmc2 {};
+    msmc-tools = callPackage ../applications/science/biology/msmc-tools {};
     htslib = callPackage ../development/libraries/science/biology/htslib {};
     samtools = callPackage ../applications/science/biology/samtools {};
     seqtk = callPackage ../applications/science/biology/seqtk {};
