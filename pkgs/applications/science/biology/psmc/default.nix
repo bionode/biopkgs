@@ -36,7 +36,7 @@ stdenv.mkDerivation rec {
     cp utils/psmc2history.pl $out/bin/
     cp utils/psmc_plot.pl $out/bin/
     cp utils/psmc_trunc.pl $out/bin/
-    cp utils/splitfa $out/bin/
+    # cp utils/splitfa $out/bin/
   '';
 
   meta = with stdenv.lib; {
