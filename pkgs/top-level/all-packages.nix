@@ -50,6 +50,7 @@ let
     seqbility = callPackage ../applications/science/biology/seqbility {};
     msmc = callPackage ../applications/science/biology/msmc {};
     msmc-bin = callPackage ../applications/science/biology/msmc-bin {};
+    shapeit-bin = callPackage ../applications/science/biology/shapeit-bin {};
     msmc2 = callPackage ../applications/science/biology/msmc2 {};
     msmc-tools = callPackage ../applications/science/biology/msmc-tools {};
     htslib = callPackage ../development/libraries/science/biology/htslib {};
