@@ -29,6 +29,7 @@ let
     # tsunami-udp = callPackage ../tools/networking/tsunami-udp {};
     # udpcast = callPackage ../tools/networking/udpcast {};
     # udr = callPackage ../tools/networking/udr {};
+    python36Packages = callPackage ./python-packages.nix {};
     # nodejs = hiPrio nodejs-6_x;
     # nodePackages_6_x = callPackage ../development/node-packages/default-v6.nix {
       # nodejs = pkgs.nodejs-6_x;
