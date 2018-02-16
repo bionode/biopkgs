@@ -5,6 +5,8 @@ let
   nixpkgs = import <nixpkgs> { inherit system; };
   source = (nixpkgs.lib.importJSON ../../nixsrc.json);
   pinPkgs = import (nixpkgs.fetchFromGitHub source.origin) { inherit system; };
+  # To avoid compiling all from source (speed up) but loose some reproducibility, use the line below instead
+  # pinPkgs = import (fetchTarball https://d3g5gsiof5omrk.cloudfront.net/nixos/unstable/nixos-18.03pre126729.2e4aded3669/nixexprs.tar.xz) { inherit system; };
 
   pkgs = pinPkgs // {
     stdenv = pinPkgs.stdenv.overrideDerivation (attrs: attrs // {
