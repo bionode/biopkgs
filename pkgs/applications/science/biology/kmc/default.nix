@@ -2,14 +2,14 @@
 
 stdenv.mkDerivation rec {
   pname = "kmc";
-  version = "f25a1af"; # Git commit from August 8, 2017
+  version = "291aacc"; # Git commit from Mar 1, 2018
   name = "${pname}-${version}";
 
   src = fetchFromGitHub {
     owner = "refresh-bio";
     repo = "KMC";
-    rev = "f25a1af7bb70aa4f17692848b333e84812ca9363";
-    sha256 = "0wzqhw4dkl9vpwnrc59ya1j0l8z9ccipmr2mjmmymbzyvclg0033";
+    rev = "291aacc33a0ebef7178b62218ae9b23c8c576d8d";
+    sha256 = "0538xayl7zwggwyhgbwqf4yd023bkyxwgz92pkx3gjxk41m7dgcl";
   };
 
   installPhase = ''
