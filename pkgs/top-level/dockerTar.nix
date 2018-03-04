@@ -14,7 +14,7 @@ let
   );
 in
   dockerTools.buildImage rec {
-    name = "bionode/" + builtins.replaceStrings ["-${version}"] [""] "${pkg.name}";
+    name = "bionode/${pkg.pname}";
     tag = "${version}_nix${source.version}";
     contents = [ pkg busybox ];
     created = timestamp;
