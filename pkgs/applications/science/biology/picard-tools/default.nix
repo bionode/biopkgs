@@ -1,8 +1,9 @@
 {stdenv, fetchurl, jre, makeWrapper}:
 
 stdenv.mkDerivation rec {
-  name = "picard-tools-${version}";
+  pname = "picard-tools";
   version = "2.7.1";
+  name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://github.com/broadinstitute/picard/releases/download/${version}/picard.jar";

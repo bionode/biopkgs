@@ -1,8 +1,9 @@
 { stdenv, fetchFromGitHub, zlib, openblas, darwin}:
 
 stdenv.mkDerivation rec {
-  name = "plink-ng-${version}";
+  pname = "plink-ng";
   version = "1.90b3";
+  name = "${pname}-${version}";
 
   src = fetchFromGitHub {
     owner = "chrchang";
