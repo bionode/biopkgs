@@ -1,8 +1,9 @@
 { stdenv, fetchurl, unzip, jre, makeWrapper }:
 
 stdenv.mkDerivation rec {
-  name = "trimmomatic-${version}";
+  pname = "trimmomatic";
   version = "0.36";
+  name = "${pname}-${version}";
 
   src = fetchurl {
     url = "http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-${version}.zip";

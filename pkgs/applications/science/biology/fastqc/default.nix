@@ -1,8 +1,9 @@
 { stdenv, fetchurl, unzip, jre }:
 
 stdenv.mkDerivation rec {
-  name = "fastqc-${version}";
+  pname = "fastqc";
   version = "0.11.5";
+  name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${version}.zip";

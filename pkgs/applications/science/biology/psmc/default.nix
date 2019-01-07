@@ -1,8 +1,10 @@
-{ stdenv, fetchFromGitHub, zlib }:
+{ stdenv, fetchFromGitHub, zlib, perl }:
 
 stdenv.mkDerivation rec {
-  name = "psmc-${version}";
-  version = "e5f7df5"; # Git commit from January 21, 2016
+  pname = "psmc";
+  upstreamVersion = "e5f7df5"; # Git commit from January 21, 2016
+  version = "${upstreamVersion}perl";
+  name = "${pname}-${version}";
 
   src = fetchFromGitHub {
     owner = "lh3";
@@ -11,7 +13,7 @@ stdenv.mkDerivation rec {
     sha256 = "1fh8vhrjabyc4vsgy7fqy24r83557vzgj3a3w4353nljdgz1q4il";
   };
 
-  buildInputs = [ zlib ];
+  buildInputs = [ zlib perl ];
   buildPhase = ''
     make
     cd utils; make; cd ..

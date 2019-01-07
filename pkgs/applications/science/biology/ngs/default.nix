@@ -5,8 +5,9 @@
 with stdenv.lib;
 
 stdenv.mkDerivation rec {
-  name = "ngs-${version}";
+  pname = "ngs";
   version = "1.3.0";
+  name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://github.com/ncbi/ngs/archive/${version}.tar.gz";

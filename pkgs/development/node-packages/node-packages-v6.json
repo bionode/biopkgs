@@ -1,4 +1,9 @@
 [
+  "npm",
+  "node-inspector",
+  "node-gyp",
+  "node-pre-gyp",
+  "npm-check-updates",
   "bionode",
   "bionode-ncbi",
   "bionode-watermill",
@@ -7,5 +12,6 @@
   "git-standup",
   "tool-stream",
   "tiny-care-terminal",
-  "vtop"
+  "vtop",
+  "dag-map"
 ]

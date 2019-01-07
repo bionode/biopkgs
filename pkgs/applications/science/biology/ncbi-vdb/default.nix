@@ -1,8 +1,9 @@
 { stdenv, fetchurl, zlib, perl, libxml2, file, hdf5, ngs }:
 
 stdenv.mkDerivation rec {
-  name = "ncbi-vdb-${version}";
+  pname = "ncbi-vdb";
   version = "2.8.2-2";
+  name = "${pname}-${version}";
 
   src = fetchurl {
     name = "${name}.tar.gz";

@@ -1,20 +1,24 @@
-# Use like `nix-build -A dockerTar --argstr pkg 'htop'
-# then `docker load < result`
-# docker run -ti htop-2.0.2:2.0.2-nix17.09-beta /bin/sh # try htop then exit
-# docker export $(docker ps -lq) | gzip > htop.tar.gz
-# singularity exec htop.tar.gz htop
-
-{ pkg, source, dockerTools, busybox }:
+{ pkg, shellDir, source, dockerTools, timestamp, busybox }:
 
 let
+  shell = import shellDir;
   version = pkg.version or (
-    if pkg.name == "shell"
-    then (import ../../shell.nix).version
+    if pkg.name == shell.name
+    then shell.version
+    else ""
+  );
+  pname = pkg.pname or (
+    if pkg.name == shell.name
+    then shell.pname
     else ""
   );
 in
   dockerTools.buildImage rec {
-    name = builtins.replaceStrings ["-${version}"] [""] "${pkg.name}";
+    name = "bionode/${pkg.pname}";
     tag = "${version}_nix${source.version}";
     contents = [ pkg busybox ];
+    created = timestamp;
+    config = {
+      Cmd = [ "${pkg}/bin/${pname}" ];
+    };
   }

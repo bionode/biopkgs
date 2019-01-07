@@ -3,7 +3,7 @@
 # Usage: source ./nixez.fish
 
 function docker-load-nix
-  if test -n (cat /proc/version | grep Microsoft)
+  if grep -q -s Microsoft /proc/version
     set DIR (pwd | sed 's|/mnt/\(.\)|\1:|' | sed 's|/|\\\|g')
   else
     set DIR (pwd)
@@ -15,7 +15,7 @@ function docker-load-nix
     set ARGS -ti --rm
   end
 
-  docker run $ARGS -v $DIR:/data $IMAGE /bin/sh
+  # docker run $ARGS -v $DIR:/data $IMAGE
 end
 
 function read_confirm
@@ -45,10 +45,34 @@ function nixez
     nix-env -q
   case build
     nix-build (pwd) -A $argv[2]
+  case nodejs
+    cd pkgs/development/node-packages
+    node2nix -6 -i node-packages-v6.json -o node-packages-v6.nix -c composition-v6.nix
+    cd ../../..
   case docker
-    nix-build (pwd) -A dockerTar --argstr pkg $argv[2]
-    and docker-load-nix interactive
+    if uname -a | grep 'Darwin' >/dev/null
+      sudo (cat ~/.nixpkgs/linuxkit-builder/env) \
+      NIX_PATH="nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs" \
+      nix-build (pwd) -A dockerTar --argstr pkg $argv[2] \
+        --argstr timestamp (date -u +"%Y-%m-%dT%H:%M:%SZ") \
+        --argstr system "x86_64-linux"
+    else
+      nix-build (pwd) -A dockerTar --argstr pkg $argv[2] \
+        --argstr timestamp (date -u +"%Y-%m-%dT%H:%M:%SZ")
+    end
+    if [ -t 1 ]
+      docker-load-nix interactive
+    else
+      docker-load-nix
+    end
   case singularity
+    sudo (cat ~/.nixpkgs/linuxkit-builder/env) \
+    NIX_PATH="nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs" \
+    nix-build (pwd) -A dockerTar --argstr pkg $argv[2]
+    and docker-load-nix
+    set NAME (docker ps -l --format "{{.Image}}" | sed 's|:|_|')
+    and docker export (docker ps -lq) | gzip > $NAME.tar.gz
+  case singularity-mac
     nix-build (pwd) -A dockerTar --argstr pkg $argv[2]
     and docker-load-nix
     set NAME (docker ps -l --format "{{.Image}}" | sed 's|:|_|')
@@ -66,6 +90,8 @@ function nixez
     if read_confirm
       curl https://nixos.org/nix/install | sh
     end
+  case repair
+    nix-store --verify --check-contents
   case '*'
     echo "Options: shell, search, install, remove, list, build, docker, singularity, setup, unsafe-setup"
   end

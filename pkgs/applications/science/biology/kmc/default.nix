@@ -1,22 +1,22 @@
 { stdenv, fetchFromGitHub }:
 
 stdenv.mkDerivation rec {
-  name = "kmc-${version}";
-  version = "f25a1af"; # Git commit from August 8, 2017
+  pname = "kmc";
+  version = "291aacc"; # Git commit from Mar 1, 2018
+  name = "${pname}-${version}";
 
   src = fetchFromGitHub {
     owner = "refresh-bio";
     repo = "KMC";
-    rev = "f25a1af7bb70aa4f17692848b333e84812ca9363";
-    sha256 = "0wzqhw4dkl9vpwnrc59ya1j0l8z9ccipmr2mjmmymbzyvclg0033";
+    rev = "291aacc33a0ebef7178b62218ae9b23c8c576d8d";
+    sha256 = "0538xayl7zwggwyhgbwqf4yd023bkyxwgz92pkx3gjxk41m7dgcl";
   };
-
-  buildInputs = [ ];
 
   installPhase = ''
     mkdir -p $out/bin
     cp bin/kmc $out/bin/
     cp bin/kmc_dump $out/bin/
+    cp bin/kmc_tools $out/bin/
   '';
 
   patches = [
