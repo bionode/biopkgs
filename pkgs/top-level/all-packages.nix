@@ -53,7 +53,7 @@ let
     plink-ng = callPackage ../applications/science/biology/plink-ng {};
     psmc = callPackage ../applications/science/biology/psmc {};
     seqbility = callPackage ../applications/science/biology/seqbility {};
-    # nextflow = callPackage ../applications/science/misc/nextflow {};
+    nextflow = callPackage ../applications/science/misc/nextflow {};
     msmc = callPackage ../applications/science/biology/msmc {};
     msmc-bin = callPackage ../applications/science/biology/msmc-bin {};
     shapeit-bin = callPackage ../applications/science/biology/shapeit-bin {};
