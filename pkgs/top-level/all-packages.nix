@@ -2,11 +2,13 @@
 { system ? builtins.currentSystem, pkg ? null, shellDir ? ../../shell.nix, hiPrio ? null, nodejs-6_x ? null, timestamp ? "1970-01-01T00:00:01Z" }:
 
 let
-  nixpkgs = import <nixpkgs> { inherit system; };
-  source = (nixpkgs.lib.importJSON ../../nixsrc.json);
-  pinPkgs = import (nixpkgs.fetchFromGitHub source.origin) { inherit system; };
-  # To avoid compiling all from source (speed up) but loose some reproducibility, use the line below instead
-  # pinPkgs = import (fetchTarball https://d3g5gsiof5omrk.cloudfront.net/nixos/unstable/nixos-18.03pre126729.2e4aded3669/nixexprs.tar.xz) { inherit system; };
+  nixVersion = "18.09";
+
+  pinPkgs = import (builtins.fetchTarball {
+    name = "nixos-${nixVersion}";
+    url = "https://github.com/NixOS/nixpkgs/archive/${nixVersion}.tar.gz";
+    sha256 = "1ib96has10v5nr6bzf7v8kw7yzww8zanxgw2qi1ll1sbv6kj6zpd";
+  }) { inherit system; };
 
   pkgs = pinPkgs // {
     stdenv = pinPkgs.stdenv.overrideDerivation (attrs: attrs // {
@@ -51,6 +53,7 @@ let
     plink-ng = callPackage ../applications/science/biology/plink-ng {};
     psmc = callPackage ../applications/science/biology/psmc {};
     seqbility = callPackage ../applications/science/biology/seqbility {};
+    # nextflow = callPackage ../applications/science/misc/nextflow {};
     msmc = callPackage ../applications/science/biology/msmc {};
     msmc-bin = callPackage ../applications/science/biology/msmc-bin {};
     shapeit-bin = callPackage ../applications/science/biology/shapeit-bin {};
@@ -69,7 +72,6 @@ let
   allPkgs = pkgs // customPkgs // containerReadyPkgs // customEnvs;
 
   utils = {
-    source = source;
     containerReadyPkgs = containerReadyPkgs;
     dockerTar = callPackage ./dockerTar.nix { inherit timestamp; pkg=allPkgs."${pkg}"; shellDir=(builtins.toPath shellDir); };
     nodePackages = customPkgs.nodePackages_6_x;
