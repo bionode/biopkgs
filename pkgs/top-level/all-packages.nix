@@ -17,6 +17,28 @@ let
 
   callPackage = pkgs.lib.callPackageWith (pkgs // pkgs.xlibs // self);
 
+  rPackages = callPackage ../development/r-modules { overrides = (p: {}) pkgs; };
+
+  pythonGenerated = (import ../development/python-modules/requirements.nix { inherit pkgs; }).packages;
+  python36Packages = pkgs.python36Packages // pythonGenerated;
+  pythonPackages = python36Packages;
+  python = pkgs.python3;
+
+  nodePackages_10_x = callPackage ../development/node-packages/default-v10.nix {
+    nodejs = pkgs.nodejs-10_x;
+  };
+  nodePackages = nodePackages_10_x;
+  nodejs = pkgs.nodejs-10_x;
+
+  languagesModules = {
+    rPackages = rPackages;
+    python36Packages = python36Packages;
+    pythonPackages = pythonPackages;
+    python = python;
+    nodePackages = nodePackages;
+    nodejs = nodejs;
+  };
+
   customPkgs = {
     nextflow = callPackage ../applications/science/misc/nextflow {};
     # aspera = callPackage ../tools/networking/aspera {};
@@ -76,5 +98,5 @@ let
   # };
 
   # self = allPkgs // utils;
-  self = pkgs // customPkgs;
+  self = pkgs // languagesModules // customPkgs;
 in self
