@@ -24,6 +24,11 @@ nodePackages // {
     buildInputs = [ nodePackages.node-gyp-build ];
   };
 
+
+  bionode-sra = nodePackages.bionode-sra.override {
+    buildInputs = [ pkgs.curl pkgs.gnumake ];
+  };
+
   dnschain = nodePackages.dnschain.override {
     buildInputs = [ pkgs.makeWrapper nodePackages.coffee-script ];
     postInstall = ''

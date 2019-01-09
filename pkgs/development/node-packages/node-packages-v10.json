@@ -4,6 +4,7 @@
 , "azure-functions-core-tools"
 , "bionode-fasta"
 , "bionode-ncbi"
+, "bionode-sra"
 , "body-parser"
 , "bower"
 , "bower2nix"
