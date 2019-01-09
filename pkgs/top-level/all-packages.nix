@@ -41,6 +41,7 @@ let
 
   customPkgs = {
     nextflow = callPackage ../applications/science/misc/nextflow {};
+    arioc = callPackage ../applications/science/biology/arioc {};
     # aspera = callPackage ../tools/networking/aspera {};
     # bbcp = callPackage ../tools/networking/bbcp {};
     # ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {};
