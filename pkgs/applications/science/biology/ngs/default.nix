@@ -6,12 +6,12 @@ with stdenv.lib;
 
 stdenv.mkDerivation rec {
   pname = "ngs";
-  version = "1.3.0";
+  version = "2.9.3";
   name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://github.com/ncbi/ngs/archive/${version}.tar.gz";
-    sha256 = "1wiyf4c6nm2j87pv015cbi0qny5byf3pbvcw3likifz5dl56ag40";
+    sha256 = "0zbmbyc746lmbfvqr4z0bz8lq1z9ahp242j9ri4y8rjc1wsdyv6i";
   };
 
   buildInputs = [ zlib perl]

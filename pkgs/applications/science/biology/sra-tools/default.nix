@@ -1,23 +1,23 @@
-{ stdenv, fetchurl, zlib, perl, libxml2, file, hdf5, ngs, ncbi-vdb }:
+{ stdenv, fetchurl, zlib, perl, libxml2, file, hdf5, ngs, ncbi-vdb, bash, makeWrapper }:
 
 stdenv.mkDerivation rec {
   pname = "sra-tools";
-  version = "2.8.2-3";
+  version = "2.9.2";
   name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://github.com/ncbi/sra-tools/archive/${version}.tar.gz";
-    sha256 = "1yljhydg2wphk13iadkwhs48mqqs1ki4961njws7r6636pbmyknh";
+    sha256 = "0fygqdk968yj72z5k5w2gqy4m23m2phj83a7dqy1df60w4g0jmg0";
   };
 
-  buildInputs = [ zlib perl libxml2.dev file/*provides libmagic*/ hdf5 ngs ncbi-vdb];
+  buildInputs = [ zlib perl libxml2.dev file/*provides libmagic*/ hdf5 ngs ncbi-vdb bash makeWrapper ];
 
   enableParallelBuilding = false;
 
   patches = [
-    ./fix-naming-conflict.patch
-    ./do-not-link-libxml2-statically.patch
-    ./remove-ld-static.patch
+   #./fix-naming-conflict.patch
+   ./do-not-link-libxml2-statically.patch
+   ./remove-ld-static.patch
   ];
 
   configureFlags = ''
@@ -28,6 +28,12 @@ stdenv.mkDerivation rec {
     --with-ngs-sdk-prefix=${ngs}
     --with-ncbi-vdb-build=${ncbi-vdb}/src/ncbi-vdb/_build
     --with-ncbi-vdb-source=${ncbi-vdb}/src/ncbi-vdb
+  '';
+
+  preBuild = ''
+    for i in build/*.sh; do
+      substituteInPlace $i --replace /bin/bash ${bash}/bin/bash
+    done
   '';
 
   meta = with stdenv.lib; {

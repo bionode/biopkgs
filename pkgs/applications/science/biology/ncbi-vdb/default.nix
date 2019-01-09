@@ -1,21 +1,27 @@
-{ stdenv, fetchurl, zlib, perl, libxml2, file, hdf5, ngs }:
+{ stdenv, fetchurl, zlib, perl, libxml2, file, hdf5, ngs, makeWrapper, bash, bc, bison }:
 
 stdenv.mkDerivation rec {
   pname = "ncbi-vdb";
-  version = "2.8.2-2";
+  version = "2.9.3";
   name = "${pname}-${version}";
 
   src = fetchurl {
     name = "${name}.tar.gz";
     url = "https://github.com/ncbi/ncbi-vdb/archive/${version}.tar.gz";
-    sha256 = "159wiw6fnmw772rlpphmwnyl4vayg0adqg7bb2mgld8fy2mzfrkq";
+    sha256 = "13mr9jsl6q5y8b897masrls0i3kwi68v3qssbir329fnkc80l2hh";
   };
 
-  buildInputs = [ zlib perl libxml2 file/*provides libmagic*/ hdf5 ngs ];
+  buildInputs = [ zlib perl libxml2 file/*provides libmagic*/ hdf5 ngs makeWrapper bash bc bison ];
 
-  patches = [
-    ./remove_flags.patch
-  ];
+ # patches = [
+ #   ./remove_flags.patch
+ # ];
+
+  preBuild = ''
+    for i in build/*.sh; do
+      substituteInPlace $i --replace /bin/bash ${bash}/bin/bash
+    done
+  '';
 
   hardeningDisable = [ "all" ];
 
@@ -23,6 +29,8 @@ stdenv.mkDerivation rec {
   dontPatchELF = true;
 
   configureFlags = ''
+    --with-magic-prefix=${file}
+    --with-hdf5-prefix=${hdf5}
     --build-prefix _build
     --with-xml2-prefix=${libxml2.dev}
     --with-ngs-sdk-prefix=${ngs}
