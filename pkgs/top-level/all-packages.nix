@@ -40,14 +40,33 @@ let
   };
 
   customPkgs = {
+    # Workflows
     nextflow = callPackage ../applications/science/misc/nextflow {};
+    # Cuda aligners
     arioc = callPackage ../applications/science/biology/arioc {};
-    # aspera = callPackage ../tools/networking/aspera {};
+    # SRA
+    sra-tools = callPackage ../applications/science/biology/sra-tools {};
+    ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {}; # sra-tools dep
+    ngs = callPackage ../applications/science/biology/ngs {}; # sra-tools dep
+    # QC
+    seqtk = callPackage ../applications/science/biology/seqtk {};
+    fastqc = callPackage ../applications/science/biology/fastqc {};
+    trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
+    # K-mers
+    kmc = callPackage ../applications/science/biology/kmc {};
+    # Population genomics
+    psmc = callPackage ../applications/science/biology/psmc {};
+    msmc = callPackage ../applications/science/biology/msmc {};
+    # msmc-bin = callPackage ../applications/science/biology/msmc-bin {};
+    # msmc2 = callPackage ../applications/science/biology/msmc2 {};
+    # msmc-tools = callPackage ../applications/science/biology/msmc-tools {};
+    seqbility = callPackage ../applications/science/biology/seqbility {}; # msmc dep
+
     # bbcp = callPackage ../tools/networking/bbcp {};
-    # ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {};
-    # ngs = callPackage ../applications/science/biology/ngs {};
+    # aspera = callPackage ../tools/networking/aspera {};
+    # shapeit-bin = callPackage ../applications/science/biology/shapeit-bin {};
+    # htslib = callPackage ../development/libraries/science/biology/htslib {};
     # seqlib = callPackage ../applications/science/biology/seqlib {};
-    # sra-tools = callPackage ../applications/science/biology/sra-tools {};
     # tsunami-udp = callPackage ../tools/networking/tsunami-udp {};
     # udpcast = callPackage ../tools/networking/udpcast {};
     # udr = callPackage ../tools/networking/udr {};
@@ -59,30 +78,6 @@ let
   };
 
   containerReadyPkgs = {
-    # bcftools = callPackage ../applications/science/biology/bcftools {};
-    # bedtools = callPackage ../applications/science/biology/bedtools {};
-    # bowtie2 = callPackage ../applications/science/biology/bowtie2 {};
-    # bwa = callPackage ../applications/science/biology/bwa {};
-    # fastqc = callPackage ../applications/science/biology/fastqc {};
-    # freebayes = callPackage ../applications/science/biology/freebayes {};
-    # kmc = callPackage ../applications/science/biology/kmc {};
-    # mrbayes = callPackage ../applications/science/biology/mrbayes {};
-    # paml- = callPackage ../applications/science/biology/paml {};
-    # picard-tools = callPackage ../applications/science/biology/picard-tools {};
-    # plink = callPackage ../applications/science/biology/plink {};
-    # plink-ng = callPackage ../applications/science/biology/plink-ng {};
-    # psmc = callPackage ../applications/science/biology/psmc {};
-    # seqbility = callPackage ../applications/science/biology/seqbility {};
-    # nextflow = callPackage ../applications/science/misc/nextflow {};
-    # msmc = callPackage ../applications/science/biology/msmc {};
-    # msmc-bin = callPackage ../applications/science/biology/msmc-bin {};
-    # shapeit-bin = callPackage ../applications/science/biology/shapeit-bin {};
-    # msmc2 = callPackage ../applications/science/biology/msmc2 {};
-    # msmc-tools = callPackage ../applications/science/biology/msmc-tools {};
-    # htslib = callPackage ../development/libraries/science/biology/htslib {};
-    # samtools = callPackage ../applications/science/biology/samtools {};
-    # seqtk = callPackage ../applications/science/biology/seqtk {};
-    # trimmomatic = callPackage ../applications/science/biology/trimmomatic {};
   };
 
   # customEnvs = {
