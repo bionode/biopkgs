@@ -44,6 +44,7 @@ let
     nextflow = callPackage ../applications/science/misc/nextflow {};
     # Cuda aligners
     arioc = callPackage ../applications/science/biology/arioc {};
+    salmon = callPackage ../applications/science/biology/salmon {};
     # SRA
     sra-tools = callPackage ../applications/science/biology/sra-tools {};
     ncbi-vdb = callPackage ../applications/science/biology/ncbi-vdb {}; # sra-tools dep
