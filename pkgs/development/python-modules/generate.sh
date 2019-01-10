@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p glibcLocales python37 nix-prefetch-github pypi2nix
+#! nix-shell -i bash -p glibcLocales python36 nix-prefetch-github pypi2nix
 #! nix-shell -I nixpkgs=../../..
 
 export LANG=en_US.UTF-8
