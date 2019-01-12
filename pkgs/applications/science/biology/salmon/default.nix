@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/COMBINE-lab/salmon/archive/v${version}.tar.gz";
-    sha256 = "1dr8maifd6hv45812l4w244npxmd2v73fzqmngs12amb2lq1jzxm";
+    sha256 = "18zgky3fm3wcgjh5r2dq88p11xvr1cyczgmsqqpc3d5hqppx3swi";
   };
 
   buildInputs = [
