@@ -1,4 +1,4 @@
-{ stdenv, fetchTarball, makeWrapper,
+{ stdenv, fetchurl, makeWrapper,
   cmake, autoconf, pkgconfig,
   cudatoolkit, linuxPackages,
   bash, curl, unzip, bzip2, lzma,
@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   pname = "salmon";
   version = "0.12.0";
 
-  src = fetchTarball {
+  src = fetchurl {
     url = "https://github.com/COMBINE-lab/salmon/archive/v${version}.tar.gz";
     sha256 = "1dr8maifd6hv45812l4w244npxmd2v73fzqmngs12amb2lq1jzxm";
   };
