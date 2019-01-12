@@ -1,7 +1,7 @@
 { stdenv, fetchTarball, makeWrapper,
   cmake, autoconf, pkgconfig,
   cudatoolkit, linuxPackages,
-  bash, curl, unzip, bzip2, lzma
+  bash, curl, unzip, bzip2, lzma,
   boost, tbb, jemalloc }:
 
 stdenv.mkDerivation rec {
