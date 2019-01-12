@@ -5,7 +5,10 @@ let
     name = "nixos-19.01.10";
     url = "https://github.com/NixOS/nixpkgs/archive/539d62be3aa24d20d266187b8cbe59aaf74244cc.tar.gz";
     sha256 = "0s1sh4lvkv9z7hs2rli31xrg819jw5qiqzmj0nmml15qkw22x60j";
-  }) { inherit system; };
+  }) {
+    inherit system;
+    config.allowUnfree = true;
+  };
 
   pkgs = pinPkgs // {
     stdenv = pinPkgs.stdenv.overrideDerivation (attrs: attrs // {
